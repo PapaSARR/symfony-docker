@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $threeLastPosts = $this->postRepo->findThreeLastPosts();
-        //var_dump($threeLastPosts);
+        //dd($threeLastPosts);
         return $this->render('home/index.html.twig', [
             'threeLastPosts' => $threeLastPosts,
         ]);
@@ -35,7 +35,16 @@ class HomeController extends AbstractController
         return $this->render('home/show.html.twig', [
             'post' => $post,
         ]);
+    }
 
-        // ...
+    /**
+     * @Route("/posts}", name="posts", methods={"GET"})
+     */
+    public function all_posts(): Response
+    {
+
+        return $this->render('home/posts.html.twig', [
+            'posts' => $this->postRepo->findAll(),
+        ]);
     }
 }
