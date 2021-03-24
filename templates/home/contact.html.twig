@@ -4,7 +4,12 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="mt-4 text-center">Page de contact</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1 class="mt-4 text-center">Formulaire de contact</h1>
     <hr>
     {{ form(form) }}
 </div>

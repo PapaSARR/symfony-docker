@@ -6,6 +6,8 @@ use App\Entity\Contact;
 use App\Entity\Post;
 use App\Form\Type\ContactType;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     private $postRepo;
-    public function __construct(PostRepository $postRepo){
+    private $em;
+    public function __construct(PostRepository $postRepo, EntityManagerInterface $em){
         $this->postRepo = $postRepo;
+        $this->em = $em;
     }
     /**
      * @Route("/", name="home")
@@ -53,13 +57,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact}", name="contact", methods={"GET", "POST"})
      */
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
         // creates a task object and initializes some data for this example
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $contact = $form->getData();
+            $contact->setDate(new \DateTime());
+            $this->em->persist($contact);
+            $this->em->flush();
+            $this->addFlash('success', 'Votre message vient d\'être envoyé!');
+            //dd($contact);
+        }
         return $this->render('home/contact.html.twig', [
             'form' => $form->createView(),
+            'contact' => $contact
         ]);
 
     }
