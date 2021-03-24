@@ -8,7 +8,7 @@ SGBD MySQL et l'interface Web PhpMyadmin.
    //Installation des dépendances
 3. composer install & npm install  
    //Lancement de MySql et phpMyAdmin via docker
-4. docker-compose up -d
+4. docker-compose up -d  
    //Chargement des données et migrations
 5. symfony console doctrine:fixtures:load
 6. symfony console doctrine:migrations:migrate  
