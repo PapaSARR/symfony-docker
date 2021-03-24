@@ -7,5 +7,6 @@ SGBD MySQL et l'interface Web PhpMyadmin.
 2. cd symfony-docker
 3. composer install & npm install
 4. docker-compose up -d
-5. npm run watch
-6. symfony serve -d
+5. symfony console doctrine:fixtures:load
+6. npm run watch
+7. symfony serve -d
