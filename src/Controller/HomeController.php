@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,5 +24,18 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'threeLastPosts' => $threeLastPosts,
         ]);
+    }
+
+
+    /**
+     * @Route("/posts/{id<[0-9]*>}", name="post_show", methods={"GET"})
+     */
+    public function show(Post $post): Response
+    {
+        return $this->render('home/show.html.twig', [
+            'post' => $post,
+        ]);
+
+        // ...
     }
 }

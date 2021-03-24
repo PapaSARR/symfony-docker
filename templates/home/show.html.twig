@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post #{{ post.id }}{% endblock %}
+
+{% block body %}
+
+<br><br>
+<div class="container">
+    <div class="card border-primary mb-3">
+        <div class="card-header">Post #{{ post.id }}</div>
+        <div class="card-body text-primary">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -11,7 +11,7 @@
 
     <ul>
         {% for post in threeLastPosts %}
-            <li><a href="#">{{ post.title }}</a></li>
+            <li><a href="{{path('post_show', {id: post.id})}}"><h5 class="pl-2 pt-4">{{ post.title }}</h5></a></li>
         {% endfor %}
     </ul>
 </div>
