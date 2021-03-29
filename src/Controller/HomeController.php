@@ -11,14 +11,22 @@ use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Elastica\Client;
+#use Elastica\Type\Mapping;
+use Elastica\Mapping;
+use Elastica\Document;
+use Symfony\Component\Yaml\Yaml;
+
 
 class HomeController extends AbstractController
 {
     private $postRepo;
     private $em;
-    public function __construct(PostRepository $postRepo, EntityManagerInterface $em){
+    private $client;
+    public function __construct(PostRepository $postRepo, EntityManagerInterface $em, Client $client){
         $this->postRepo = $postRepo;
         $this->em = $em;
+        $this->client = $client;
     }
     /**
      * @Route("/", name="home")
@@ -68,6 +76,48 @@ class HomeController extends AbstractController
             $contact->setDate(new \DateTime());
             $this->em->persist($contact);
             $this->em->flush();
+
+            //Ajout de l'objet contact dans Elasticsearch
+            $index = $this->client->getIndex('contacts_blog');
+            /*
+            $settings = Yaml::parse(
+                file_get_contents(
+                    __DIR__."../../../config/elasticsearch_contact_blog.yaml"
+                )
+            );
+            */
+            
+            // Define mapping
+            $mapping = new Mapping();
+
+            // Set mapping
+            $mapping->setProperties(array(
+                'name'     => array('type' => 'text'),
+                'email'  => array('type' => 'text'),
+                'message'=> array('type' => 'text')
+            ));
+
+            // Send mapping to index
+            $mapping->send($index);
+
+            //$index->create($settings, true);
+            $index->addDocuments(
+                [new Document(
+                    $contact->getId(), // Manually defined ID
+                    [
+                        'name' => $contact->getName(),
+                        'email' => $contact->getEmail(),
+                        'message' => $contact->getMessage(),
+
+                        // Not indexed but needed for display
+                        'date' => $contact->getDate()->format('M d, Y'),
+                    ]
+                   // "contact" // Types are deprecated, to be removed in Elastic 7
+                )
+                ]
+            );
+            $index->refresh();
+
             $this->addFlash('success', 'Votre message vient d\'être envoyé!');
             //dd($contact);
         }

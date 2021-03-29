@@ -1,0 +1,15 @@
+settings:
+  index:
+    # single node, no sharding
+    number_of_shards: 1
+    number_of_replicas: 0
+mappings:
+  contacts:
+      dynamic: false # disable dynamic mapping
+      properties:
+        name: &_text
+          type: text
+          analyzer: french
+        email: *_text
+        message: *_text
+
