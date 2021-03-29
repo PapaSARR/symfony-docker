@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38fb3116-5535-431c-b5af-029e5eaf458d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/contact.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +165,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/posts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../elasticsearch_kibana" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -192,7 +192,7 @@
       <workItem from="1615727197704" duration="10312000" />
       <workItem from="1615745250798" duration="3237000" />
       <workItem from="1616351253945" duration="1869000" />
-      <workItem from="1616493654318" duration="43465000" />
+      <workItem from="1616493654318" duration="50976000" />
     </task>
     <servers />
   </component>
