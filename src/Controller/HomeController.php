@@ -86,10 +86,8 @@ class HomeController extends AbstractController
             );
             */
             
-            // Define mapping
+            // Mapping (Définition des types des champs)
             $mapping = new Mapping();
-
-            // Set mapping
             $mapping->setProperties(array(
                 'name'     => array('type' => 'text'),
                 'email'  => array('type' => 'text'),
