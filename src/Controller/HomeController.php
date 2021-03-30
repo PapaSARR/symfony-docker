@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Elastica\Client;
-#use Elastica\Type\Mapping;
 use Elastica\Mapping;
 use Elastica\Document;
 use Symfony\Component\Yaml\Yaml;

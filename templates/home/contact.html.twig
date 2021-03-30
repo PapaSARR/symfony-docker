@@ -11,6 +11,9 @@
     {% endfor %}
     <h1 class="mt-4 text-center">Formulaire de contact</h1>
     <hr>
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Envoyer" class="btn btn-primary" formnovalidate/>
+    {{ form_end(form) }}
 </div>
 {% endblock %}
