@@ -12,6 +12,7 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
+    /*
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -20,4 +21,5 @@ class PostCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
+    */
 }

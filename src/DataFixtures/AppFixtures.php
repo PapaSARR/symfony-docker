@@ -26,13 +26,14 @@ class AppFixtures extends Fixture
             $manager->persist($user);
 
             //Contact
+            /*
             $contact = new Contact();
             $contact->setName($faker->name);
             $contact->setEmail($faker->email);
             $contact->setMessage($faker->paragraph);
             $contact->setDate($faker->dateTime($max = 'now', $timezone = null));
             $manager->persist($contact);
-
+            */
             //Newsletter
             $newsletter = new Newsletter();
             $newsletter->setEmail($faker->email);
